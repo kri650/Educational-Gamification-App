@@ -1,0 +1,15 @@
+:root {
+  --bg-page:        #0F0E17;
+  --surface:        #1A1A2E;
+  --surface-raised: #16213E;
+  --primary:        #6C63FF;
+  --gold:           #FFD700;
+  --success:        #10B981;
+  --danger:         #EF4444;
+  --warning:        #F59E0B;
+  --text-primary:   #E8E8F0;
+  --text-muted:     #9CA3AF;
+  --border:         rgba(255, 255, 255, 0.08);
+  --radius-card:    16px;
+  --radius-btn:     8px;
+}

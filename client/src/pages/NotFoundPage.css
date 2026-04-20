@@ -1,0 +1,4 @@
+.notfound { padding-top: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 16px; text-align: center; }
+.notfound__number { font-size: 8rem; font-weight: 700; color: var(--primary); opacity: 0.4; line-height: 1; }
+.notfound h1 { font-size: 2rem; }
+.notfound p { color: var(--text-muted); }
