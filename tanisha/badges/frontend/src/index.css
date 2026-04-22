@@ -1,0 +1,87 @@
+/* ─────────────────────────────────────────
+   tokens.css  —  Shared Design System
+   Dynamic Gamification · Tanisha Rewards
+   ───────────────────────────────────────── */
+
+:root {
+  /* ── Brand palette ── */
+  --primary:        #6C63FF;
+  --primary-dim:    rgba(108, 99, 255, 0.08);
+  --primary-glow:   rgba(108, 99, 255, 0.2);
+  --accent-gold:    #D97706;
+  --accent-gold-dim:rgba(217, 119, 6, 0.08);
+
+  /* ── Backgrounds ── */
+  --bg:             #FFFFFF;
+  --surface:        #F9FAFB;
+  --surface-2:      #F3F4F6;
+  --surface-hover:  rgba(108, 99, 255, 0.04);
+
+  /* ── Text ── */
+  --text:           #1F2937;
+  --text-muted:     #6B7280;
+  --text-faint:     #9CA3AF;
+
+  /* ── Borders ── */
+  --border:         rgba(108, 99, 255, 0.12);
+  --border-hover:   rgba(108, 99, 255, 0.25);
+
+  /* ── Rarity system ── */
+  --common-stroke:    #9CA3AF;
+  --common-fill:      #f3f4f6;
+  --common-glow:      rgba(156, 163, 175, 0.2);
+  --common-text:      #6B7280;
+
+  --rare-stroke:      #3B82F6;
+  --rare-fill:        #f0f9ff;
+  --rare-glow:        rgba(59, 130, 246, 0.2);
+  --rare-text:        #1d4ed8;
+
+  --epic-stroke:      #8B5CF6;
+  --epic-fill:        #f5f3ff;
+  --epic-glow:        rgba(139, 92, 246, 0.2);
+  --epic-text:        #6d28d9;
+
+  --legendary-stroke: #D97706;
+  --legendary-fill:   #fffbeb;
+  --legendary-glow:   rgba(217, 119, 6, 0.2);
+  --legendary-text:   #b45309;
+
+  /* ── Typography (from brief) ── */
+  --font-display: 'Inter', sans-serif;
+  --font-mono:    'Fira Code', monospace;
+
+  --text-display: 700 3rem var(--font-display);   /* hero headings */
+  --text-h1:      700 2rem var(--font-display);    /* page titles   */
+  --text-h2:      600 1.5rem var(--font-display);  /* section heads */
+  --text-body:    400 1rem var(--font-display);    /* body text     */
+  --text-small:   400 0.875rem var(--font-display);/* labels/meta   */
+
+  /* ── Spacing (multiples of 8px only) ── */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-6: 48px;
+  --sp-8: 64px;
+
+  /* ── Radii ── */
+  --radius-btn:  8px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+
+  /* ── Shadows ── */
+  --shadow-card:  0 4px 24px rgba(0,0,0,0.4);
+  --shadow-glow:  0 0 24px var(--primary-glow);
+  --shadow-gold:  0 0 20px var(--accent-gold-dim);
+
+  /* ── Animation durations (from brief) ── */
+  --dur-micro:    150ms;
+  --dur-standard: 250ms;
+  --dur-large:    400ms;
+  --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Focus ring ── */
+  --focus-ring: 2px solid var(--primary);
+  --focus-offset: 2px;
+}
