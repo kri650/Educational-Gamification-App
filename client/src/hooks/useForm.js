@@ -9,6 +9,7 @@ export default function useForm(initialValues, validationRules = {}) {
     const { name, value } = e.target
     setValues(prev => ({ ...prev, [name]: value }))
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
+    if (errors._form) setErrors(prev => ({ ...prev, _form: '' }))
   }
 
   const validate = () => {

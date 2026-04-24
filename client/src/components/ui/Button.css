@@ -13,7 +13,7 @@
 .btn--danger   { background: var(--danger); color: #fff; }
 .btn--danger:hover:not(:disabled) { filter: brightness(1.1); }
 .btn--sm { font-size: 0.75rem; padding: 6px 12px; }
-.btn--md { font-size: 0.875rem; padding: 10px 20px; }
+.btn--md { font-size: 0.875rem; padding: 12px 24px; }
 .btn--lg { font-size: 1rem; padding: 14px 28px; }
 .btn__spinner { width: 16px; height: 16px; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
