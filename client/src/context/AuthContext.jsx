@@ -14,6 +14,19 @@ export function AuthProvider({ children }) {
     setUser(newUser)
   }, [])
 
+  const register = useCallback(async (name, email, password) => {
+    try {
+      const { data } = await api.post('/api/auth/register', { name, email, password })
+      login(data.token, data.user)
+      return { success: true }
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error.response?.data?.message || 'Registration failed. Please try again.' 
+      }
+    }
+  }, [login])
+
   const logout = useCallback(() => {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
@@ -33,7 +46,7 @@ export function AuthProvider({ children }) {
   }, [user])
 
   return (
-    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout, refreshUser }}>
+    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout, register, refreshUser }}>
       {children}
     </AuthContext.Provider>
   )
