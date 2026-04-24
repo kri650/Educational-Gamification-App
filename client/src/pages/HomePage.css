@@ -1,7 +1,0 @@
-.home { padding-top: 64px; }
-.home__hero { text-align: center; padding: 96px 24px 64px; }
-.home__title { font-size: 3rem; line-height: 1.1; margin-bottom: 16px; }
-.home__title--accent { color: var(--primary); }
-.home__subtitle { color: var(--text-muted); font-size: 1.125rem; max-width: 480px; margin: 0 auto 40px; }
-.home__cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-.home__features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; padding: 0 24px 96px; }
