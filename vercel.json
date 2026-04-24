@@ -9,8 +9,9 @@
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "outputDirectory": "dist",
-        "buildCommand": "npm install && npm run build"
+       "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/dist",
+  "framework": null
       }
     }
   ],
