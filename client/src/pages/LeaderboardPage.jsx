@@ -29,8 +29,10 @@ function findCurrentUser(preparedEntries, authUser) {
     return preparedEntries.find((entry) => entry.name === 'You') ?? null
   }
 
+  const authId = authUser.id ?? authUser._id
+
   return (
-    preparedEntries.find((entry) => entry.id === authUser.id)
+    preparedEntries.find((entry) => authId != null && entry.id === authId)
     ?? preparedEntries.find((entry) => entry.name.toLowerCase() === authUser.name?.toLowerCase())
     ?? preparedEntries.find((entry) => entry.name === 'You')
     ?? null
