@@ -153,17 +153,19 @@ function LeaderboardPage() {
             {currentUser ? <>Rank <strong>#{currentUser.rank}</strong></> : 'Join the board'}
           </span>
         </div>
-        <span
-          className={`sticky-rank__trend ${currentUser?.weeklyChange > 0 ? 'delta-up' : currentUser?.weeklyChange < 0 ? 'delta-down' : 'delta-flat'}`}
-        >
-          {currentUser
-            ? currentUser.weeklyChange > 0
-              ? `Climbed ${currentUser.weeklyChange} this week`
-              : currentUser.weeklyChange < 0
-                ? `Down ${Math.abs(currentUser.weeklyChange)} this week`
-                : 'Holding steady this week'
-            : 'Complete quizzes to earn your place'}
-        </span>
+        {timeRange === 'weekly' && (
+          <span
+            className={`sticky-rank__trend ${currentUser?.weeklyChange > 0 ? 'delta-up' : currentUser?.weeklyChange < 0 ? 'delta-down' : 'delta-flat'}`}
+          >
+            {currentUser
+              ? currentUser.weeklyChange > 0
+                ? `Climbed ${currentUser.weeklyChange} this week`
+                : currentUser.weeklyChange < 0
+                  ? `Down ${Math.abs(currentUser.weeklyChange)} this week`
+                  : 'Holding steady this week'
+              : 'Complete quizzes to earn your place'}
+          </span>
+        )}
       </aside>
     </main>
   )
