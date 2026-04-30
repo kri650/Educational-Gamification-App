@@ -9,10 +9,17 @@ const app = express()
 connectDB()
 
 app.use(helmet())
-app.use(cors({
-    origin: process.env.CLIENT_URL,
+const allowedOrigins = (process.env.CLIENT_URL || '')
+  .split(',')
+  .map((value) => value.trim())
+  .filter(Boolean)
+
+app.use(
+  cors({
+    origin: allowedOrigins.length ? allowedOrigins : true,
     credentials: true
-}))
+  })
+)
 app.use(express.json())
 app.use(morgan('dev'))
 app.get('/api/health', (req, res) => {
