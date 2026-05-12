@@ -248,7 +248,7 @@ function Inner() {
         api.get('/api/badges'),
         api.get('/api/users/me/stats')
       ]);
-      setBadges(badgesRes.data.data);
+   setBadges(Array.isArray(badgesRes?.data?.data) ? badgesRes.data.data : []);
       setStats(statsRes.data.data);
     } catch (error) {
       console.error("Failed to fetch badges or stats:", error);
