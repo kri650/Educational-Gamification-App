@@ -269,7 +269,8 @@ function Inner() {
     return () => window.removeEventListener("badge:unlock", h);
   }, []);
 
-  const earnedCount = badges.filter(b => b.earned).length;
+  const badgesSafe = Array.isArray(badges) ? badges : [];
+const earnedCount = badgesSafe.filter(b => b.earned).length;
   const TABS = [
     { key: "all",    label: "All",    count: badges.length },
     { key: "earned", label: "Earned", count: earnedCount },
