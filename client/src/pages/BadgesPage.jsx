@@ -268,6 +268,7 @@ function Inner() {
     window.addEventListener("badge:unlock", h);
     return () => window.removeEventListener("badge:unlock", h);
   }, []);
+  const badgesSafe = useMemo(() => (Array.isArray(badges) ? badges : []), [badges]);
   const earnedCount = badgesSafe.filter(b => b.earned).length;
 
   const TABS = [
@@ -284,20 +285,6 @@ function Inner() {
 
   const handleSim = () => {
     const locked = badgesSafe.filter(b => !b.earned);
-const earnedCount = badgesSafe.filter(b => b.earned).length;
-  const TABS = [
-    { key: "all",    label: "All",    count: badges.length },
-    { key: "earned", label: "Earned", count: earnedCount },
-    { key: "locked", label: "Locked", count: badges.length - earnedCount },
-  ];
-  const filtered = useMemo(() =>
-    tab === "earned" ? badges.filter(b => b.earned) :
-    tab === "locked" ? badges.filter(b => !b.earned) :
-    badges,
-  [tab, badges]);
-
-  const handleSim = () => {
-    const locked = badges.filter(b => !b.earned);
     if (locked.length > 0) {
       setSimBadge(locked[Math.floor(Math.random() * locked.length)]);
     } else {
