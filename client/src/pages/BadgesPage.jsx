@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import api from "../utils/api";
-import { RARITY } from "../mocks/badgeMock";
+import { RARITY, badges as MOCK_BADGES } from "../mocks/badgeMock";
 import BadgeCard from "../components/rewards/BadgeCard";
 import BadgeUnlockModal from "../components/rewards/BadgeUnlockModal";
 import XPBar from "../components/rewards/XPBar";
@@ -253,6 +253,10 @@ function Inner() {
     } catch (error) {
       console.error("Failed to fetch badges or stats:", error);
       showToast("Failed to load rewards data", "error");
+
+      // Frontend-only deployments (or previews without backend) often don't have /api.
+      // Fall back to mock badges so the page remains usable.
+      setBadges(Array.isArray(MOCK_BADGES) ? MOCK_BADGES : []);
     } finally {
       setLoading(false);
     }
