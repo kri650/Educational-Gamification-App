@@ -1,6 +1,6 @@
 {
-  "installCommand": "npm ci",
-  "buildCommand": "npm run build && if [ -d client/dist ]; then rm -rf dist && cp -R client/dist dist; fi",
+  "installCommand": "if [ -f client/package.json ]; then npm --prefix client install; else npm install; fi",
+  "buildCommand": "if [ -f client/package.json ]; then npm --prefix client run build && rm -rf dist && cp -R client/dist dist; else npm run build; fi",
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
