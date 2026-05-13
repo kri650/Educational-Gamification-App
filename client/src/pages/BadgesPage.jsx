@@ -252,11 +252,16 @@ function Inner() {
       setStats(statsRes.data.data);
     } catch (error) {
       console.error("Failed to fetch badges or stats:", error);
-      showToast("Failed to load rewards data", "error");
 
       // Frontend-only deployments (or previews without backend) often don't have /api.
       // Fall back to mock badges so the page remains usable.
-      setBadges(Array.isArray(MOCK_BADGES) ? MOCK_BADGES : []);
+      if (Array.isArray(MOCK_BADGES) && MOCK_BADGES.length > 0) {
+        setBadges(MOCK_BADGES);
+        showToast("Backend unavailable — showing demo rewards", "info");
+      } else {
+        showToast("Failed to load rewards data", "error");
+        setBadges([]);
+      }
     } finally {
       setLoading(false);
     }
