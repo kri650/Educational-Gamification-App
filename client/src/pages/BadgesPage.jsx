@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import api from "../utils/api";
-import { RARITY } from "../mocks/badgeMock";
+import { RARITY, badges as MOCK_BADGES } from "../mocks/badgeMock";
 import BadgeCard from "../components/rewards/BadgeCard";
 import BadgeUnlockModal from "../components/rewards/BadgeUnlockModal";
 import XPBar from "../components/rewards/XPBar";
@@ -252,7 +252,16 @@ function Inner() {
       setStats(statsRes.data.data);
     } catch (error) {
       console.error("Failed to fetch badges or stats:", error);
-      showToast("Failed to load rewards data", "error");
+
+      // Frontend-only deployments (or previews without backend) often don't have /api.
+      // Fall back to mock badges so the page remains usable.
+      if (Array.isArray(MOCK_BADGES) && MOCK_BADGES.length > 0) {
+        setBadges(MOCK_BADGES);
+        showToast("Backend unavailable — showing demo rewards", "info");
+      } else {
+        showToast("Failed to load rewards data", "error");
+        setBadges([]);
+      }
     } finally {
       setLoading(false);
     }
@@ -268,22 +277,23 @@ function Inner() {
     window.addEventListener("badge:unlock", h);
     return () => window.removeEventListener("badge:unlock", h);
   }, []);
+  const badgesSafe = useMemo(() => (Array.isArray(badges) ? badges : []), [badges]);
+  const earnedCount = badgesSafe.filter(b => b.earned).length;
 
-  const badgesSafe = Array.isArray(badges) ? badges : [];
-const earnedCount = badgesSafe.filter(b => b.earned).length;
   const TABS = [
-    { key: "all",    label: "All",    count: badges.length },
+    { key: "all",    label: "All",    count: badgesSafe.length },
     { key: "earned", label: "Earned", count: earnedCount },
-    { key: "locked", label: "Locked", count: badges.length - earnedCount },
+    { key: "locked", label: "Locked", count: badgesSafe.length - earnedCount },
   ];
+
   const filtered = useMemo(() =>
-    tab === "earned" ? badges.filter(b => b.earned) :
-    tab === "locked" ? badges.filter(b => !b.earned) :
-    badges,
-  [tab, badges]);
+    tab === "earned" ? badgesSafe.filter(b => b.earned) :
+    tab === "locked" ? badgesSafe.filter(b => !b.earned) :
+    badgesSafe,
+  [tab, badgesSafe]);
 
   const handleSim = () => {
-    const locked = badges.filter(b => !b.earned);
+    const locked = badgesSafe.filter(b => !b.earned);
     if (locked.length > 0) {
       setSimBadge(locked[Math.floor(Math.random() * locked.length)]);
     } else {
