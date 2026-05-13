@@ -1,7 +1,7 @@
 {
-  "installCommand": "npm --prefix client ci",
-  "buildCommand": "npm run build",
-  "outputDirectory": "client/dist",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build && if [ -d client/dist ]; then rm -rf dist && cp -R client/dist dist; fi",
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
